@@ -50,15 +50,38 @@ function quizApp(e){
 
 (function nextQuestion(){
 //when the quiz is over
-if (currentQuestion===2){
-document.querySelector('h1').innerHTML = "Congratulations! You've answered to all the questions!"
+if (currentQuestion===totalQuestions){
+document.querySelector('h1').innerHTML = "Congratulations! You've managed to get to the end!"
 let finalMessage = document.createElement('div')
 finalMessage.id = 'finalMessage'
 finalMessage.innerHTML = `Your final score: ${correctAnswers}/10`
 let clearingContainer = document.querySelector('section').firstElementChild
 clearingContainer.parentNode.replaceChild(finalMessage, clearingContainer)
+let tryAgain = document.createElement('div')
+tryAgain.innerHTML = 'Would you like to try again?'
+tryAgain.id = 'tryAgain'
+document.querySelector('section').appendChild(tryAgain)
 
+//buttons to click after finishing the game
+let restartButtonYES = document.createElement('button')
+restartButtonYES.id = 'restartButtonYES'
+restartButtonYES.className = 'restartButton'
+restartButtonYES.innerHTML = 'YES :)'
+document.querySelector('section').appendChild(restartButtonYES)
+restartButtonYES.addEventListener('click', reload)
+function reload(){
+  window.location.reload();
+}
 
+let restartButtonNO = document.createElement('button')
+restartButtonNO.id = 'restartButtonNO'
+restartButtonNO.className = 'restartButton'
+restartButtonNO.innerHTML = 'NO :('
+document.querySelector('section').appendChild(restartButtonNO)
+restartButtonNO.addEventListener('click', takeMe)
+function takeMe(){
+  window.location = 'https://github.com/mateuszbakmb'
+}
 
 return false
 }
@@ -107,9 +130,12 @@ function checkAnswer(e){
   newBody.appendChild(coloredResult)
 
   let nextButton = document.createElement('button')
-  nextButton.innerHTML = 'Next question'
+  //button after the last question
+  if (currentQuestion===10){
+    nextButton.innerHTML = 'Finish'
+  } else {
+  nextButton.innerHTML = 'Next question'}
   nextButton.id = 'nextButton'
-  nextButton.className = 'btn btn-primary'
   nextButton.addEventListener('click', nextQuestion);
 
   simpleDiv.parentNode.replaceChild(newBody, simpleDiv)
@@ -121,18 +147,11 @@ function checkAnswer(e){
   } else {coloredResult.innerHTML = 'Incorrect! :(';
 coloredResult.style.color = 'red';
   let whichIsCorrect = document.createElement('div');
+  whichIsCorrect.id = 'whichIsCorrect'
   whichIsCorrect.innerHTML = `Correct answer : ${correctOne}`
   newBody.appendChild(whichIsCorrect);
   newBody.appendChild(nextButton)}
 }
-
-
 })();
-
-
-
-
 }
-
-
 }
