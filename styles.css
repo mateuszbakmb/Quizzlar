@@ -1,44 +1,28 @@
-* {
-  margin: 0;
-}
-
 body {
-  background-color: #2a2a2a;
+  background-color: #9f9c9c;
+  text-align: center;
+  font-family: 'Chakra Petch', sans-serif;
 }
 
-#container {
+h1 {
+  font-size: 3rem;
+  margin: 3rem;
+}
+
+.textPanel, .selectPanel {
+  display: block;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20vh;
-  height: 60vh;
-  width: 60vw;
-  background-color: #ca90da;
-  text-align: center;
-  box-sizing: border-box;
-  padding-top: 20px;
+  width: 50vw;
+  font-size: 1.3rem;
 }
 
-#choice {
-  margin-top: 20px;
+.textPanel {
+  margin-top: 2rem;
 }
 
-.leftPanel {
-  display: inline-block;
-  width: 40%;
-  text-align: right;
-  margin: 20px;
-}
-
-.rightPanel {
-  display: inline-block;
-  width: 40%;
-  text-align: left;
-  margin: 20px;
-}
-
-select {
-  width: 160px;
-}
+select {}
 
 #submit {
   display: block;
@@ -57,17 +41,19 @@ select {
 }
 
 #contQuestions {
-  height: 50%;
+  margin-top: 100px;
 }
 
 .answerButton {
   margin: 0;
-  padding: 10px;
+  padding: 1rem;
+  font-size: 1.2rem;
 }
 
 #coloredResult {
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #nextButton {

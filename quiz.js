@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", start);
+
+function start (){
 //causing clicking on submit button to get selected values
 let submitButton = document.getElementById('submit');
 submitButton.addEventListener('click', showResult);
@@ -10,7 +13,6 @@ function showResult(e){
 
   let cat = document.getElementById('category');
   let chosenCat = cat.options[cat.selectedIndex].value;
-
   generateUrl(chosenDiff, chosenCat);
 }
 //generating API url to get 10 random questions from https://opentdb.com/ based on selected options after submitting
@@ -46,6 +48,20 @@ function quizApp(e){
     return false
   }
 
+(function nextQuestion(){
+//when the quiz is over
+if (currentQuestion===2){
+document.querySelector('h1').innerHTML = "Congratulations! You've answered to all the questions!"
+let finalMessage = document.createElement('div')
+finalMessage.id = 'finalMessage'
+finalMessage.innerHTML = `Your final score: ${correctAnswers}/10`
+let clearingContainer = document.querySelector('section').firstElementChild
+clearingContainer.parentNode.replaceChild(finalMessage, clearingContainer)
+
+
+
+return false
+}
   //info about the current question
   let category = questions[currentQuestion].category;
   let riddle = questions[currentQuestion].question;
@@ -59,19 +75,19 @@ function quizApp(e){
   let pCat = document.createElement('div')
   pCat.textContent = `Category: ${category}`
   pCat.id = 'pCat'
-  // document.querySelector('section').appendChild(pCat)
+
 
 //contBody as in the body, main part of the container with future questions
-  let contBody = document.querySelector('#choice');
-  let newDiv = document.createElement('span');
+  let contBody = document.querySelector('#choice').firstElementChild
+
   contBody.parentNode.replaceChild(pCat, contBody);
 
   let askQuestion = document.createElement('div')
   askQuestion.id = 'askQuestion'
   askQuestion.innerHTML = riddle;
-  document.querySelector('section').appendChild(askQuestion)
+  document.querySelector('#pCat').appendChild(askQuestion)
   let simpleDiv = document.createElement('div')
-  document.querySelector('section').appendChild(simpleDiv)
+  document.querySelector('#pCat').appendChild(simpleDiv)
   simpleDiv.id = 'contQuestions'
 
   let button = both.map(x=>{let div = document.createElement('button');
@@ -94,6 +110,7 @@ function checkAnswer(e){
   nextButton.innerHTML = 'Next question'
   nextButton.id = 'nextButton'
   nextButton.className = 'btn btn-primary'
+  nextButton.addEventListener('click', nextQuestion);
 
   simpleDiv.parentNode.replaceChild(newBody, simpleDiv)
   if(e.target.id === correctOne){
@@ -110,7 +127,12 @@ coloredResult.style.color = 'red';
 }
 
 
+})();
 
+
+
+
+}
 
 
 }
