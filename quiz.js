@@ -41,6 +41,11 @@ function quizApp(e){
   let correctAnswers = 0;
   let totalQuestions = questions.length;
 
+  if(totalQuestions <10){
+    alert('No questions of that specific difficulty and category in the database. Please select different options')
+    return false
+  }
+
   //info about the current question
   let category = questions[currentQuestion].category;
   let riddle = questions[currentQuestion].question;
@@ -65,24 +70,47 @@ function quizApp(e){
   askQuestion.id = 'askQuestion'
   askQuestion.innerHTML = riddle;
   document.querySelector('section').appendChild(askQuestion)
+  let simpleDiv = document.createElement('div')
+  document.querySelector('section').appendChild(simpleDiv)
+  simpleDiv.id = 'contQuestions'
 
-  let button = both.map(x=>{let div = document.createElement('div');
+  let button = both.map(x=>{let div = document.createElement('button');
     div.innerHTML = x;
     div.id = x;
-    div.className = 'answerButton';
-    document.querySelector('section').appendChild(div)
+    div.className = 'answerButton btn-block m-0';
+    simpleDiv.appendChild(div);
+    div.addEventListener('click', checkAnswer);
   })
 
+//checking if chosen answer is correct
+function checkAnswer(e){
+  currentQuestion++;
+  let newBody = document.createElement('div')
+  let coloredResult = document.createElement('div')
+  coloredResult.id = 'coloredResult'
+  newBody.appendChild(coloredResult)
+
+  let nextButton = document.createElement('button')
+  nextButton.innerHTML = 'Next question'
+  nextButton.id = 'nextButton'
+  nextButton.className = 'btn btn-primary'
+
+  simpleDiv.parentNode.replaceChild(newBody, simpleDiv)
+  if(e.target.id === correctOne){
+    correctAnswers++;
+    coloredResult.innerHTML = 'Correct! :)';
+    coloredResult.style.color = 'green';
+    newBody.appendChild(nextButton)
+  } else {coloredResult.innerHTML = 'Incorrect! :(';
+coloredResult.style.color = 'red';
+  let whichIsCorrect = document.createElement('div');
+  whichIsCorrect.innerHTML = `Correct answer : ${correctOne}`
+  newBody.appendChild(whichIsCorrect);
+  newBody.appendChild(nextButton)}
+}
 
 
 
-
-
-
-//apparently its jQuery
-// let rara = document.querySelector('#choice')
-// let baba = document.createElement('div');
-// rara.replaceWith(baba);
 
 
 }

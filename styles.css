@@ -1,5 +1,9 @@
+* {
+  margin: 0;
+}
+
 body {
-  background-color: #2a2a2a
+  background-color: #2a2a2a;
 }
 
 #container {
@@ -10,6 +14,12 @@ body {
   width: 60vw;
   background-color: #ca90da;
   text-align: center;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+
+#choice {
+  margin-top: 20px;
 }
 
 .leftPanel {
@@ -26,10 +36,40 @@ body {
   margin: 20px;
 }
 
+select {
+  width: 160px;
+}
+
 #submit {
   display: block;
   margin: auto;
   margin-top: 50px;
   width: 200px;
   height: 70px;
+}
+
+#pCat {
+  font-size: 0.9rem;
+}
+
+#askQuestion {
+  margin: 20px;
+}
+
+#contQuestions {
+  height: 50%;
+}
+
+.answerButton {
+  margin: 0;
+  padding: 10px;
+}
+
+#coloredResult {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#nextButton {
+  margin-top: 50px;
 }
