@@ -2,11 +2,22 @@ body {
   background: url(img/connectwork.png);
   text-align: center;
   font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main {
+  width: 100%;
+}
+
+#container {
+  margin: 20px 0;
 }
 
 h1 {
   font-size: 3rem;
-  margin: 3rem 3rem 1rem 3rem;
   color: #ffffff;
   word-wrap: break-word;
 }
